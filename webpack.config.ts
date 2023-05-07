@@ -1,21 +1,26 @@
 import path from 'node:path';
 import wepback from 'webpack';
-import {buildWebpackConfig} from "./config/build/buildWebpackConfig";
-import { BuildPaths } from "./config/build/types/config";
+import { buildWebpackConfig } from "./config/build/buildWebpackConfig";
+import { BuildEnv, BuildPaths } from "./config/build/types/config";
 
-const paths: BuildPaths = {
-    entry: path.resolve(__dirname, 'src', 'index.ts'),
-    build: path.resolve(__dirname, 'build'),
-    html: path.resolve(__dirname, 'public', 'index.html')
-}
+export default (env: BuildEnv) => {
 
-const mode = 'development';
-const isDev = mode === 'development';
+    const paths: BuildPaths = {
+        entry: path.resolve(__dirname, 'src', 'index.ts'),
+        build: path.resolve(__dirname, 'build'),
+        html: path.resolve(__dirname, 'public', 'index.html')
+    }
 
-const config: wepback.Configuration = buildWebpackConfig({
-    mode: 'development',
-    paths,
-    isDev,
-})
+    const mode = env.mode || 'development';
+    const isDev = mode === 'development';
+    const PORT = env.port || 3000;
 
-export default config;
+    const config: wepback.Configuration = buildWebpackConfig({
+        mode: mode,
+        paths,
+        isDev,
+        port: PORT,
+    })
+
+    return config;
+};
