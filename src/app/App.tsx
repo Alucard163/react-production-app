@@ -3,11 +3,12 @@ import React from "react";
 import { ClassNames } from 'shared/lib/classNames/classNames';
 import {AppRouter} from "app/providers/router";
 import { Navbar } from "widgets/Navbar";
-import {ThemeSwitcher} from "widgets/ThemeSwitcher";
+import {Sidebar} from "widgets/Sidebar/ui";
 
 import {useTheme} from "app/providers/ThemeProvider";
 
 import './styles/index.scss';
+
 
 
 const App = () => {
@@ -15,9 +16,11 @@ const App = () => {
 
       return (
           <div className={ClassNames('app', {}, [theme])}>
-              <ThemeSwitcher />
               <Navbar />
-              <AppRouter />
+              <div className='content-page'>
+                  <Sidebar />
+                  <AppRouter />
+              </div>
           </div>
       )
 }
