@@ -1,5 +1,7 @@
 {
   "test": "test",
   "translation": "translation",
-  "lang": "English"
+  "lang": "English",
+  "Страница не найдена": "Page not found",
+  "throw error": "throw error"
 }
