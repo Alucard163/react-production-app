@@ -1,6 +1,7 @@
 import HTMLWebpackPlugin from 'html-webpack-plugin';
 import wepback from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { BuildOptions } from './types/config';
 
 export function buildPlugins(
@@ -17,6 +18,9 @@ export function buildPlugins(
         }),
         new wepback.DefinePlugin({
             __IS_DEV__: JSON.stringify(isDev),
+        }),
+        new BundleAnalyzerPlugin({
+            openAnalyzer: false,
         }),
     ];
 }
